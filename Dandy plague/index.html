@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificado de Autenticidad Dandy Hats</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #000;
+            --secondary-color: #fff;
+            --fallback-bg: #333333;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%; 
+            font-family: 'Montserrat', sans-serif; 
+            overflow: hidden; 
+            background-color: var(--fallback-bg);
+        }
+
+        /* ------------------------------------------- */
+        /* ✨ ESTILOS PARA EL CUADRO DEL GIF (FIJO) ✨ */
+        /* ------------------------------------------- */
+
+        .gif-container {
+            /* Fija el elemento en relación con la ventana del navegador */
+            position: fixed; 
+            
+            /* Posicionamiento en la esquina superior derecha */
+            top: 20px;   
+            right: 20px; 
+            
+            /* Dimensiones y estilos del cuadro */
+            width: 100px; 
+            height: 100px;
+            border:  2px solid transparent; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            z-index: 1000; 
+        }
+
+        .gif-container img {
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            display: block;
+        }
+
+        /* ------------------------------------------- */
+        /* ESTILOS EXISTENTES (Certificado) */
+        /* ------------------------------------------- */
+        
+        /* Contenedor principal con la imagen de fondo */
+        .container {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            justify-content: flex-end; 
+            
+            background: url('https://i.ibb.co/F4C020Dc/plague.jpg') no-repeat center 05%; 
+            background-size: cover; 
+            
+            position: relative; 
+            color: var(--secondary-color);
+            box-sizing: border-box; 
+            
+            padding-bottom: 43px; 
+        }
+
+        /* --- Estilos de la Tarjeta (info-box) --- */
+
+        .info-box {
+  width: 90%;
+  max-width: 325px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: var(--primary-color);
+  padding: 15px;
+  text-align: center;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  margin-top: 5px;
+  margin-bottom: 50px;
+  /* --- Propiedades para hacer la caja más corta --- */
+  max-height: 200px; /* Establece la altura máxima deseada (ejemplo) */
+      /* Añade una barra de desplazamiento si el contenido es más alto que 400px */
+}
+
+        .auth-text {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+
+        /* Icono de Dandy */
+        .dandy-icon {
+            width: 90px;
+            height: 90px;
+            margin: 3px auto;
+            background-image: url('https://i.ibb.co/zhV72Z4t/Certificado-dorado.png');
+            background-size: cover;
+            border-radius: 50%;
+            border: 2px solid transparent; 
+            background-position: center;
+        }
+
+        /* Contador de Escaneos */
+        .scan-count {
+            font-size: 1em;
+            font-weight: 400;
+            margin: 2px auto;
+        }
+        
+        #scanCountDisplay {
+            font-size: 1.1em;
+            font-weight: 700;
+        }
+
+        /* Botón */
+        .button {
+            display: block;
+            width: auto;
+            margin: 10px auto ;
+            padding: 12px;
+            background-color: #000000;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px; 
+            font-weight: 700;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #333333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="gif-container">
+        <img src="https://i.imgur.com/yCtPahd.gif" alt="GIF decorativo">
+    </div>
+
+    <div class="container">
+        
+        <div class="info-box">
+            <p class="auth-text">Authentic Dandy Hats Product</p>
+            
+            <div class="dandy-icon" title="Icono de producto auténtico"></div>
+            
+            <p class="scan-count" id="scanCountDisplay">Scan Count: 0</p>
+            
+            <a href="https://www.instagram.com/dandyhats?igsh=ejBjeXRjZzMxbnh5" target="_blank" class="button">About Dandy Hats</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const displayElement = document.getElementById('scanCountDisplay');
+            const storageKey = 'dandyHatsScanCount';
+            
+            let currentCount = localStorage.getItem(storageKey);
+            
+            if (currentCount === null) {
+                currentCount = 1;
+            } else {
+                currentCount = parseInt(currentCount) + 1;
+            }
+            
+            localStorage.setItem(storageKey, currentCount);
+            displayElement.textContent = `Scan Count: ${currentCount}`;
+        });
+    </script>
+</body>
+</html>

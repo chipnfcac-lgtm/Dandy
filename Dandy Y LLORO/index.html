@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificado de Autenticidad Dandy Hats</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset y configuración base */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #000;
+        }
+
+        /* Contenedor del video de fondo */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background-color: #000;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Asegura que cubra toda la pantalla */
+            display: block;
+        }
+
+        /* Capa superior para el contenido */
+        .container {
+            position: relative;
+            z-index: 10;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 50px;
+            box-sizing: border-box;
+        }
+
+        /* Tarjeta de información */
+        .info-box {
+            width: 90%;
+            max-width: 325px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #000;
+            padding: 20px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .auth-text {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            font-weight: 700;
+        }
+.logo-fixed {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 80px;
+            z-index: 20;
+        }
+
+        /* Icono de Dandy */
+        .dandy-icon {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 15px auto;
+            background-image: url('https://i.ibb.co/zhV72Z4t/Certificado-dorado.png');
+            background-size: cover;
+            border-radius: 50%;
+            background-position: center;
+        }
+
+        .scan-count {
+            font-size: 1em;
+            font-weight: 400;
+            margin: 5px auto;
+        }
+
+        #scanCountDisplay {
+            font-weight: 700;
+        }
+
+        /* Botón */
+        .button {
+            display: block;
+            width: auto;
+            margin: 15px auto 0 auto;
+            padding: 12px;
+            background-color: #000000;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #333333;
+        }
+    </style>
+</head>
+<body>
+ <img src="https://i.ibb.co/q44Q8MD/head.png" class="logo-fixed" alt="Logo ThirtyOne">
+
+    <div class="overlay">
+
+    <div class="video-container">
+        <video id="bgVideo" autoplay loop playsinline muted preload="auto">
+            <source src="https://github.com/chipnfcac-lgtm/assets/raw/main/Y%20lloro.mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+    </div>
+
+    <div class="container">
+        <div class="info-box">
+            <p class="auth-text">Authentic Dandy Hats Product</p>
+            
+            <div class="dandy-icon" title="Icono de producto auténtico"></div>
+            
+            <p class="scan-count">Scan Count: <span id="scanCountDisplay">0</span></p>
+            
+            <a href="https://www.instagram.com/dandyhats?igsh=ejBjeXRjZzMxbnh5" target="_blank" class="button">About Dandy Hats</a>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('bgVideo');
+        const displayElement = document.getElementById('scanCountDisplay');
+        const storageKey = 'dandyHatsScanCount';
+
+        // Lógica del contador
+        let currentCount = localStorage.getItem(storageKey) || 0;
+        currentCount = parseInt(currentCount) + 1;
+        localStorage.setItem(storageKey, currentCount);
+        displayElement.textContent = currentCount;
+
+        // Intentar iniciar video
+        window.addEventListener('load', () => {
+            video.play().catch(() => {
+                console.log("Auto-play bloqueado por el navegador.");
+            });
+        });
+
+        // Habilitar audio al interactuar (Requisito de navegadores)
+        const unlockExperience = () => {
+            video.muted = false;
+            video.play();
+            document.removeEventListener('click', unlockExperience);
+            document.removeEventListener('touchstart', unlockExperience);
+        };
+
+        document.addEventListener('click', unlockExperience);
+        document.addEventListener('touchstart', unlockExperience);
+    </script>
+</body>
+</html>
