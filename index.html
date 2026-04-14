@@ -5,21 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Portafolio - Dandy</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; padding: 20px; background-color: #f4f4f4; }
-        h1 { color: #333; }
-        ul { list-style: none; padding: 0; }
-        li { background: #fff; margin: 5px 0; padding: 10px; border-radius: 5px; shadow: 2px 2px 5px rgba(0,0,0,0.1); }
-        a { text-decoration: none; color: #007bff; font-weight: bold; display: block; }
-        a:hover { color: #0056b3; }
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; padding: 20px; background-color: #1a1a1a; color: #fff; }
+        h1 { color: #00d4ff; text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; }
+        
+        /* Diseño de cuadrícula para que se vea mejor */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+            gap: 15px; 
+            padding: 20px;
+        }
+
+        .card { 
+            background: #2a2a2a; 
+            border: 1px solid #444; 
+            border-radius: 8px; 
+            transition: 0.3s; 
+            overflow: hidden;
+        }
+
+        .card:hover { 
+            transform: translateY(-5px); 
+            border-color: #00d4ff; 
+            box-shadow: 0 5px 15px rgba(0,212,255,0.3);
+        }
+
+        .card a { 
+            text-decoration: none; 
+            color: #eee; 
+            padding: 20px; 
+            display: block; 
+            font-weight: bold;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+
     <h1>Mis Proyectos Dandy</h1>
+
     <div class="grid">
         <div class="card"><a href="Canelo%20unidisputed/index.html">Canelo Unidisputed</a></div>
         <div class="card"><a href="canelo%20WBC/index.html">Canelo WBC</a></div>
         <div class="card"><a href="canelo%20udisputed%20champion/index.html">Canelo Udisputed Champion</a></div>
-
         <div class="card"><a href="Dandy%209th%20anniversario/index.html">Dandy 9th Anniversario</a></div>
         <div class="card"><a href="Dandy%20DDD/index.html">Dandy DDD</a></div>
         <div class="card"><a href="Dandy%20Rodeo/index.html">Dandy Rodeo</a></div>
@@ -67,9 +95,24 @@
         <div class="card"><a href="Dandy%20tombochio/index.html">Dandy Tombochio</a></div>
         <div class="card"><a href="Dandy%20total%20black/index.html">Dandy Total Black</a></div>
         <div class="card"><a href="Dandy%20x%20rude%20awakenings%20cristo/index.html">Dandy x Rude Awakenings</a></div>
-
         <div class="card"><a href="anniversario%20cafe/index.html">Anniversario Cafe</a></div>
         <div class="card"><a href="pound%20for%20round/index.html">Pound for Round</a></div>
     </div>
+
+    <script>
+        // ESTA ES LA MAGIA PARA CONTADORES INDEPENDIENTES
+        document.querySelectorAll('.card a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                // Obtenemos el nombre único de la carpeta del enlace
+                const carpeta = this.getAttribute('href').split('/')[0];
+                
+                // Guardamos en el almacenamiento global que este es el proyecto activo
+                localStorage.setItem('proyecto_actual', carpeta);
+                
+                // OPCIONAL: Si quieres que el contador se limpie al entrar
+                // localStorage.removeItem('contador'); 
+            });
+        });
+    </script>
 </body>
 </html>
