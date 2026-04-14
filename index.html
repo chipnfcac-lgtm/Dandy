@@ -8,7 +8,6 @@
         body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; padding: 20px; background-color: #1a1a1a; color: #fff; }
         h1 { color: #00d4ff; text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; }
         
-        /* Diseño de cuadrícula para que se vea mejor */
         .grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
@@ -100,19 +99,16 @@
     </div>
 
     <script>
-        // ESTA ES LA MAGIA PARA CONTADORES INDEPENDIENTES
+        // ESTA FUNCIÓN REINICIA EL CONTADOR AL HACER CLIC
         document.querySelectorAll('.card a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                // Obtenemos el nombre único de la carpeta del enlace
-                const carpeta = this.getAttribute('href').split('/')[0];
-                
-                // Guardamos en el almacenamiento global que este es el proyecto activo
-                localStorage.setItem('proyecto_actual', carpeta);
-                
-                // OPCIONAL: Si quieres que el contador se limpie al entrar
-                // localStorage.removeItem('contador'); 
+            anchor.addEventListener('click', function() {
+                // Borra el contador compartido de la memoria
+                // Asegúrate de que la palabra entre comillas sea exactamente la misma 
+                // que usas en el código interno (ej: 'contador')
+                localStorage.removeItem('contador'); 
             });
         });
     </script>
 </body>
+</html>
 </html>
